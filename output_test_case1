@@ -1,0 +1,16 @@
+=======================================
+Processing Test Case 1:
+=======================================
+Number of roots (n): 4
+Minimum roots required (k): 3
+
+--- Converted Roots (Base 10) ---
+Root 1: Base 10, Value "4" -> Base 10: 4
+Root 2: Base 2, Value "111" -> Base 10: 7
+Root 3: Base 10, Value "12" -> Base 10: 12
+Root 6: Base 4, Value "213" -> Base 10: 39
+
+--- Summary ---
+All roots in Base 10: [4, 7, 12, 39]
+
+We have 4 roots, which is sufficient (>= 3) to determine a polynomial of degree 2.
