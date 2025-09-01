@@ -55,19 +55,7 @@ The code is organized into two primary functions for clarity and separation of c
 
 *   **Node.js:** You must have Node.js installed on your system. You can download it from [nodejs.org](https://nodejs.org/).
 
-### Execution Steps
 
-1.  **Clone the Repository:**
-    ```bash
-    git clone https://github.com/YourGitHubUsername/your-repo-name.git
-    cd your-repo-name
-    ```
-    *(Replace `YourGitHubUsername/your-repo-name` with your actual repository URL.)*
-
-2.  **Run the Script:**
-    Execute the main file from your terminal.
-    ```bash
-    node polynomialRootSolver.js
     ```
 
 
