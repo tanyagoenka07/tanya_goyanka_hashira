@@ -1,5 +1,5 @@
 function convertToBase10(value, base) {
-    let result = 0n; // Use BigInt for potentially very large numbers
+    let result = 0n;
     const baseBigInt = BigInt(base);
     const digits = "0123456789abcdefghijklmnopqrstuvwxyz";
 
@@ -23,17 +23,17 @@ function processPolynomialRoots(jsonData) {
     console.log(Minimum roots required (k): ${k});
     console.log("\n--- Converted Roots (Base 10) ---");
 
-    for (let i = 1; i <= n; i++) {
-        const rootKey = String(i);
-        if (jsonData[rootKey]) {
-            const { base, value } = jsonData[rootKey];
-            try {
-                const base10Value = convertToBase10(value, base);
-                rootsInBase10.push(base10Value);
-                console.log(Root ${i}: Base ${base}, Value "${value}" -> Base 10: ${base10Value});
-            } catch (error) {
-                console.error(Error processing root ${i}: ${error.message});
-            }
+    const actualRootKeys = Object.keys(jsonData).filter(key => !isNaN(Number(key)) && key !== 'keys');
+    actualRootKeys.sort((a, b) => Number(a) - Number(b));
+
+    for (const rootKey of actualRootKeys) {
+        const { base, value } = jsonData[rootKey];
+        try {
+            const base10Value = convertToBase10(value, base);
+            rootsInBase10.push(base10Value);
+            console.log(Root ${rootKey}: Base ${base}, Value "${value}" -> Base 10: ${base10Value});
+        } catch (error) {
+            console.error(Error processing root ${rootKey}: ${error.message});
         }
     }
 
@@ -41,17 +41,14 @@ function processPolynomialRoots(jsonData) {
     console.log(All roots in Base 10: [${rootsInBase10.join(', ')}]);
 
     if (rootsInBase10.length >= k) {
-        console.log(\nWe have ${rootsInBase10.length} roots, which is sufficient (>= ${k}) to determine a polynomial of degree ${k - 1}.);
-        // If we were to solve for coefficients, we would use these roots here.
-        // For example, using Lagrange interpolation or setting up a system of linear equations.
+        console.log(\nWe have ${rootsInBase10.length} roots (out of ${n} declared), which is sufficient (>= ${k}) to determine a polynomial of degree ${k - 1}.);
     } else {
-        console.log(\nWe only have ${rootsInBase10.length} roots, which is not enough (< ${k}) to uniquely determine a polynomial of degree ${k - 1}.);
+        console.log(\nWe only have ${rootsInBase10.length} roots (out of ${n} declared), which is not enough (< ${k}) to uniquely determine a polynomial of degree ${k - 1}.);
     }
 
     return rootsInBase10;
 }
 
-// --- Test Case 1 ---
 const testCase1 = {
     "keys": {
         "n": 4,
@@ -69,7 +66,7 @@ const testCase1 = {
         "base": "10",
         "value": "12"
     },
-    "6": { // Note: this key is '6', not '4'
+    "6": {
         "base": "4",
         "value": "213"
     }
