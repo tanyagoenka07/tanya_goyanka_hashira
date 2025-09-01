@@ -1,6 +1,3 @@
-Of course. Here is a comprehensive `README.md` file tailored to your submission. It highlights not just *what* the code does, but *why* it is a robust and well-tested solution, incorporating the insights from our extensive testing.
-
-This `README` is designed to be placed in the root of your GitHub repository.
 
 ---
 
@@ -73,4 +70,4 @@ The code is organized into two primary functions for clarity and separation of c
     node polynomialRootSolver.js
     ```
 
-The script will run the embedded test cases and print the detailed conversion results and summary for each to the console.
+
